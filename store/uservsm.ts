@@ -28,6 +28,7 @@ class UserActions extends Actions<
 > {
   setUser(payload: State) {
     this.mutations.setUser(payload)
+    console.log(this.state.name)
   }
 }
 
