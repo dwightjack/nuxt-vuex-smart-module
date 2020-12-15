@@ -1,34 +1,27 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">nuxt-vuex-smart-modules</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <p>User: {{ fullUserName }}</p>
+    <p>User VSM: {{ fullUserNameVSM }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  middleware({ store }) {
+    store.dispatch('user/setUser', { name: 'John', surname: 'Doe' })
+    store.dispatch('uservsm/setUser', { name: 'Jack', surname: 'Deo' })
+  },
+  computed: {
+    fullUserName() {
+      return `${this.$store.state.user.name} ${this.$store.state.user.surname}`
+    },
+    fullUserNameVSM() {
+      return `${this.$store.state.uservsm.name} ${this.$store.state.uservsm.surname}`
+    },
+  },
+})
 </script>
 
 <style>
