@@ -9,9 +9,9 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  middleware({ store }) {
-    store.dispatch('user/setUser', { name: 'John', surname: 'Doe' })
-    store.dispatch('uservsm/setUser', { name: 'Jack', surname: 'Deo' })
+  async middleware({ store }) {
+    await store.dispatch('user/setUser', { name: 'John', surname: 'Doe' })
+    await store.dispatch('uservsm/setUser', { name: 'Jack', surname: 'Deo' })
   },
   computed: {
     fullUserName() {
